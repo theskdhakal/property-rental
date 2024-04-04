@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import "@/assets/styles/globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Property-rentals | Find the best Rental",
@@ -13,7 +14,8 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
     <html lang="en">
       <body>
         <Navbar />
-        <div>{children}</div>
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
