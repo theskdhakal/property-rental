@@ -8,7 +8,14 @@ async function fetchProperties() {
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
-    return res.json();
+
+    console.log(res);
+    const data = await res.json();
+    console.log(data);
+    data.forEach((property: any) => {
+      console.log(property.images);
+    });
+    return data;
   } catch (error) {
     console.log(error);
   }

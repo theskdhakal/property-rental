@@ -11,7 +11,11 @@ async function fetchProperties() {
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
-    return res.json();
+
+    const data = await res.json(); // parse JSON data here
+
+    console.log(data);
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -19,9 +23,7 @@ async function fetchProperties() {
 
 const HomeProperties = async () => {
   const properties = await fetchProperties();
-
-  console.log(properties);
-
+  // console.log(properties);
   const recentProperties = properties
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);
