@@ -1,6 +1,18 @@
 import React from "react";
-import properties from "@/properties.json";
 import PropertyCard from "@/components/PropertyCard";
+
+async function fetchProperties() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/properties`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export interface Property {
   _id: string;
@@ -34,7 +46,15 @@ export interface Property {
   updatedAt: string;
 }
 
-const PropertiesPage = () => {
+const PropertiesPage = async () => {
+  const properties = await fetchProperties();
+
+  //sort properties by data
+  properties.sort(
+    (a: Property, b: Property) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
   return (
     //  < !--All Listings-- >
     <section className="px-4 py-6">
@@ -43,7 +63,7 @@ const PropertiesPage = () => {
           <p>No properties found</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {properties.map((property: Property) => (
+            {(properties as Property[]).map((property) => (
               <PropertyCard key={property._id} property={property} />
             ))}
           </div>
