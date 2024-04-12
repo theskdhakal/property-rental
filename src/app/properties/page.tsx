@@ -1,25 +1,6 @@
 import React from "react";
 import PropertyCard from "@/components/PropertyCard";
-
-async function fetchProperties() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/properties`);
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    console.log(res);
-    const data = await res.json();
-    console.log(data);
-    data.forEach((property: any) => {
-      console.log(property.images);
-    });
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
+import { fetchProperties } from "@/utils/requests";
 
 export interface Property {
   _id: string;
