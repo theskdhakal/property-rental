@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { ClipLoader } from "react-spinners";
 
@@ -7,11 +6,11 @@ const override = {
   margin: "100px auto",
 };
 
-interface LoadingPageProps {
+interface SpinnerProps {
   loading: boolean;
 }
 
-const LoadingPage: React.FC<LoadingPageProps> = ({ loading }) => {
+const Spinner: React.FC<SpinnerProps> = ({ loading }) => {
   return (
     <ClipLoader
       color="#3b82f6"
@@ -23,4 +22,4 @@ const LoadingPage: React.FC<LoadingPageProps> = ({ loading }) => {
   );
 };
 
-export default LoadingPage;
+export default Spinner;
