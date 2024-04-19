@@ -17,7 +17,6 @@ async function fetchProperties() {
 
     const data = await res.json(); // parse JSON data here
 
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
