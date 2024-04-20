@@ -24,9 +24,8 @@ export const authOptions = {
     async signIn({ profile }: { profile: any }) {
       try {
         // Connect to database
-        console.log("before connection db");
+
         await connectDB();
-        console.log("connected");
 
         // Check if user exists
         const userExists = await User.findOne({ email: profile.email });
@@ -52,7 +51,9 @@ export const authOptions = {
     async session({ session }: { session: any }) {
       // 1. get user from db
 
-      const user = await User.findOne({ email: session.user.email });
+      const user = await User.findOne({ email: session.user.email }).maxTimeMS(
+        20000
+      );
       // 2. Assign the user id to session
       session.user.id = user._id.toString();
 
