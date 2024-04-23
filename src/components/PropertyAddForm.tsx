@@ -1,10 +1,11 @@
 "use client";
 
+import { PropertiesProps } from "@/utils/Interface";
 import { useState, useEffect } from "react";
 
 const PropertyAddForm = () => {
   const [mounted, setMounted] = useState(false);
-  const [fields, setFields] = useState({
+  const [fields, setFields] = useState<PropertiesProps>({
     type: "Apartment",
     name: "Test Property",
     description: "",
@@ -35,7 +36,7 @@ const PropertyAddForm = () => {
     setMounted(true);
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     //chekc if nested property
@@ -57,11 +58,61 @@ const PropertyAddForm = () => {
       }));
     }
   };
-  const handleAmenitiesChange = (e) => {};
-  const handleImageChange = (e) => {};
+
+  const handleAmenitiesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+
+    //clone the cureent array
+    const updatedAmenities = [...fields.amenities];
+
+    if (checked) {
+      //add value to array
+      updatedAmenities.push(value);
+    } else {
+      //remove value from array
+      const index = updatedAmenities.indexOf(value);
+
+      if (index !== -1) {
+        updatedAmenities.splice(index, 1);
+      }
+    }
+
+    //update state with updated array
+    setFields((prevFields) => ({
+      ...prevFields,
+      amenities: updatedAmenities,
+    }));
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+
+    //clone images array
+    const updatedImages = [...fields.images];
+
+    //add new files to array
+    if (files !== null) {
+      for (const file of Array.from(files)) {
+        const fileData = {
+          lastModified: file.lastModified,
+          name: file.name,
+          size: file.size,
+          type: file.type,
+        };
+        updatedImages.push(fileData);
+      }
+    }
+
+    //update state with array of images
+    setFields((prevFields) => ({
+      ...prevFields,
+      images: updatedImages,
+    }));
+  };
+
   return (
     mounted && (
-      <form>
+      <form encType="multipart/form-data">
         <h2 className="text-3xl text-center font-semibold mb-6">
           Add Property
         </h2>
@@ -522,7 +573,6 @@ const PropertyAddForm = () => {
             className="border rounded w-full py-2 px-3"
             accept="image/*"
             multiple
-            value={fields.images}
             onChange={handleImageChange}
           />
         </div>

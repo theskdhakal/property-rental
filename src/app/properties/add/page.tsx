@@ -1,6 +1,6 @@
+import PropertyAddForm from "@/components/PropertyAddForm";
 import Link from "next/link";
 import React from "react";
-import PropertyAddForm from "@/components/PropertyAddForm";
 
 const PropertiesAddPage = () => {
   return (
