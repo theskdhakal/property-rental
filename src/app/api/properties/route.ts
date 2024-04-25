@@ -1,6 +1,7 @@
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { getSessionUser } from "@/utils/getSessionUser";
+import cloudinary from "@/config/cloudinary";
 
 //GET /api/properties
 export const GET = async (request: any) => {
@@ -26,8 +27,6 @@ export const POST = async (request: any) => {
 
     const sessionUser = await getSessionUser();
 
-    console.log(sessionUser);
-
     if (!sessionUser || !sessionUser.userId) {
       return new Response("User ID is required", { status: 401 });
     }
@@ -40,7 +39,7 @@ export const POST = async (request: any) => {
     const amenities = formData.getAll("amenities");
     const images = formData
       .getAll("images")
-      .filter((image) => image.name !== "");
+      .filter((image: any) => image.name !== "");
 
     //create propertyData object for db
     const propertyData = {
@@ -68,8 +67,35 @@ export const POST = async (request: any) => {
         phone: formData.get("seller_info.phone"),
       },
       owner: userId,
-      // images,
+      images,
     };
+
+    //upload images(s) to Cloudinary
+
+    const imageUrls = [];
+
+    for (const image of images) {
+      const imageBuffer = await image.arrayBuffer();
+      const imageArray = Array.from(new Uint8Array(imageBuffer));
+      const imageData = Buffer.from(imageArray);
+
+      //convert the image data to base64
+
+      const imageBase64 = imageData.toString("base64");
+
+      //make request to upload to cloudinary
+      const result = await cloudinary.uploader.upload(
+        `data:image/png;base64,${imageBase64}`,
+        {
+          folder: "property-rental",
+        }
+      );
+
+      imageUrls.push(result.secure_url);
+
+      //Add uploaded images to the propertyData object
+      propertyData.images = imageUrls;
+    }
 
     const newProperty = new Property(propertyData);
     await newProperty.save();
@@ -82,6 +108,7 @@ export const POST = async (request: any) => {
     //   status: 200,
     // });
   } catch (error) {
+    console.error("error is:", error);
     return new Response("Failed to add property", { status: 500 });
   }
 };
