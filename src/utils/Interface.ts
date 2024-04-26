@@ -23,6 +23,7 @@ export interface PropertiesProps {
     email: string;
     phone: string;
   };
+
   images: {
     lastModified: number;
     name: string;

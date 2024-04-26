@@ -7,6 +7,7 @@ import Link from "next/link";
 import PropertyDetails from "@/components/PropertyDetails";
 import { FaArrowLeft } from "react-icons/fa";
 import Spinner from "@/components/spinner";
+import PropertyImages from "@/components/PropertyImages";
 
 interface Property {
   images: string[];
@@ -153,6 +154,7 @@ const PropertyPage = () => {
               </div>
             </div>
           </section>
+          <PropertyImages images={property.images} />
         </>
       )}
     </>
