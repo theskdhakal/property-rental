@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/utils/authOptions";
 import { DefaultSession } from "next-auth";
 
-interface ExtendedSessionUser extends DefaultSession {
+export interface ExtendedSessionUser extends DefaultSession {
   user?: {
     name?: string | null;
     email?: string | null;

@@ -24,10 +24,5 @@ export interface PropertiesProps {
     phone: string;
   };
 
-  images: {
-    lastModified: number;
-    name: string;
-    size: number;
-    type: string;
-  }[];
+  images: string[];
 }

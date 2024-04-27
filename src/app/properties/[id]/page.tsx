@@ -6,8 +6,9 @@ import PropertyHeaderImage from "@/components/PropertyHeaderImage";
 import Link from "next/link";
 import PropertyDetails from "@/components/PropertyDetails";
 import { FaArrowLeft } from "react-icons/fa";
-import Spinner from "@/components/spinner";
+
 import PropertyImages from "@/components/PropertyImages";
+import Spinner from "@/components/Spinner";
 
 interface Property {
   images: string[];
