@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import profileDefault from "@/assets/images/profile.png";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { ExtendedSessionUser } from "@/utils/getSessionUser";
+
 import Spinner from "@/components/Spinner";
 import Link from "next/link";
 import { PropertiesProps } from "@/utils/Interface";
+import { toast } from "react-toastify";
 
 interface thisSession {
   user: {
@@ -77,13 +78,13 @@ const ProfilePage = () => {
 
         setProperties(updatedProperties);
 
-        alert("proeprty deleted");
+        toast.success("proeprty deleted");
       } else {
-        alert("failed to delete property");
+        toast.error("failed to delete property");
       }
     } catch (error) {
       console.log(error);
-      alert("error");
+      toast.error("error");
     }
   };
 

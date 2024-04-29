@@ -2,6 +2,7 @@ import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { getSessionUser } from "@/utils/getSessionUser";
 import cloudinary from "@/config/cloudinary";
+import { toast } from "react-toastify";
 
 //GET /api/properties
 export const GET = async (request: any) => {
@@ -101,7 +102,7 @@ export const POST = async (request: any) => {
     await newProperty.save();
 
     return Response.redirect(
-      `${process.env.NEXTAUTH_URL}/properties/${newProperty._id}`
+      `${process.env.NEXTAUTH_URL}/properties/${newProperty._id}?source=new`
     );
 
     // return new Response(JSON.stringify({ message: "Success" }), {

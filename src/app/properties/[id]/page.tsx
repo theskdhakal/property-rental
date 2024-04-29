@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { fetchProperty } from "@/utils/requests";
 import PropertyHeaderImage from "@/components/PropertyHeaderImage";
 import Link from "next/link";
@@ -9,13 +9,18 @@ import { FaArrowLeft } from "react-icons/fa";
 
 import PropertyImages from "@/components/PropertyImages";
 import Spinner from "@/components/Spinner";
+import { toast } from "react-toastify";
 
 interface Property {
   images: string[];
 }
 
 const PropertyPage = () => {
-  const { id } = useParams();
+  const param = useParams();
+  const searchParams = useSearchParams();
+
+  const id = param.id;
+  const source = searchParams.get("source");
 
   const [property, setProperty] = useState<Property | null>(null);
   const [loading, setLoading] = useState(true);
@@ -27,6 +32,7 @@ const PropertyPage = () => {
       try {
         const Property = await fetchProperty(id);
         setProperty(Property);
+        source === "new" && toast.success("New Property added successfully");
       } catch (error) {
         console.log("Error fetching property");
       } finally {

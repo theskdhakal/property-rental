@@ -2,6 +2,7 @@
 
 import { PropertiesProps } from "@/utils/Interface";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const PropertyAddForm = () => {
   const [mounted, setMounted] = useState(false);

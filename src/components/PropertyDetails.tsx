@@ -1,5 +1,6 @@
 import { Property } from "@/app/properties/page";
-import React from "react";
+
+import React, { useEffect } from "react";
 import {
   FaBed,
   FaBath,
@@ -8,6 +9,7 @@ import {
   FaCheck,
   FaMapMarker,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 interface PropertyComponentProps {
   property: Property;
