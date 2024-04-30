@@ -24,5 +24,5 @@ export interface PropertiesProps {
     phone: string;
   };
 
-  images: string[];
+  images?: string[];
 }

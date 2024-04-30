@@ -25,7 +25,7 @@ async function fetchProperties() {
 }
 
 //fetch single property
-async function fetchProperty(id) {
+async function fetchProperty(id: string) {
   try {
     //handle the case where the domain is not availavle yet
 
