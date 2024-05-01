@@ -4,10 +4,11 @@ import { PropertiesProps } from "@/utils/Interface";
 import { fetchProperty } from "@/utils/requests";
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const PropertyEditForm = () => {
   const { id } = useParams<{ id: string }>();
-  const router = useRouter;
+  const router = useRouter();
 
   const [mounted, setMounted] = useState(false);
   const [fields, setFields] = useState<PropertiesProps>({
@@ -117,7 +118,29 @@ const PropertyEditForm = () => {
     }));
   };
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formData = new FormData(e.target);
+      const res = await fetch(`/api/properties/${id}`, {
+        method: "PUT",
+        body: formData,
+      });
+
+      if (res.status === 200) {
+        router.push(`/properties/${id}`);
+        toast.success("Property has been updated");
+      } else if (res.status === 401 || res.status === 403) {
+        toast.error("Permission denied");
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log(error);
+    }
+  };
   return (
     mounted &&
     !loading && (
@@ -573,7 +596,7 @@ const PropertyEditForm = () => {
             className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Edit Property
+            Update Property
           </button>
         </div>
       </form>
