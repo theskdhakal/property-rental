@@ -8,8 +8,9 @@ import Spinner from "./Spinner";
 import Image from "next/image";
 import pin from "@/assets/images/pin.svg";
 import { PropertiesProps } from "@/utils/Interface";
+import { Property } from "@/app/properties/page";
 
-const PropertyMap = ({ property }: { property: PropertiesProps }) => {
+const PropertyMap = ({ property }: { property: Property }) => {
   const [lat, setLat] = useState<number>(0);
   const [lng, setLng] = useState<number>(0);
   const [viewport, setViewport] = useState({
