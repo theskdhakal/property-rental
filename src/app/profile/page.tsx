@@ -10,7 +10,7 @@ import Link from "next/link";
 import { PropertiesProps } from "@/utils/Interface";
 import { toast } from "react-toastify";
 
-interface thisSession {
+export interface thisSession {
   user: {
     id?: string;
     name?: string;
@@ -126,7 +126,7 @@ const ProfilePage = () => {
                     <Link href={`/properties/${property._id}`}>
                       <Image
                         className="h-32 w-full rounded-md object-cover"
-                        src={property.images[0]}
+                        src={property?.images[0]}
                         alt=""
                         width={500}
                         height={100}
