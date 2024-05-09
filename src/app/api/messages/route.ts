@@ -1,5 +1,5 @@
 import connectDB from "@/config/database";
-import Message from "@/models/message";
+import Message from "@/models/Message";
 import { getSessionUser } from "@/utils/getSessionUser";
 
 export const dynamic = "force-dynamic";
@@ -22,8 +22,6 @@ export const GET = async () => {
     const messages = await Message.find({ receipent: userId })
       .populate("sender", "username")
       .populate("property", "name");
-
-    console.log(messages);
 
     return new Response(JSON.stringify(messages), { status: 200 });
   } catch (error) {
