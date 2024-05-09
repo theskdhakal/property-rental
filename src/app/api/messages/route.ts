@@ -70,7 +70,6 @@ export const POST = async (request: any) => {
       body: message,
     });
 
-    console.log(newMessage);
     await newMessage.save();
 
     return new Response(JSON.stringify({ message: "Message sent" }), {
