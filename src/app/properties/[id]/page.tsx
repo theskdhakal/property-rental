@@ -8,12 +8,14 @@ import PropertyDetails from "@/components/PropertyDetails";
 import { FaArrowLeft } from "react-icons/fa";
 
 import PropertyImages from "@/components/PropertyImages";
-import Spinner from "@/components/Spinner";
+
 import { toast } from "react-toastify";
-import { Property } from "../page";
+
 import BookmarkButton from "@/components/BookmarkButton";
 import ShareButtons from "@/components/ShareButtons";
 import PropertyContactForm from "@/components/PropertyContactForm";
+import { Property } from "@/components/Properties";
+import Spinner from "@/components/Spinner";
 
 const PropertyPage = () => {
   const param = useParams<{ id: string }>();
