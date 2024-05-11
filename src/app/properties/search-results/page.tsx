@@ -1,12 +1,14 @@
 "use client";
-import Spinner from "@/components/Spinner";
+
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
-import { Property } from "../page";
+
 import PropertyCard from "@/components/PropertyCard";
 import PropertySearchForm from "@/components/PropertySearchForm";
+import Spinner from "@/components/spinner/Spinner";
+import { Property } from "@/components/Properties";
 
 const SearchResultsPage = () => {
   const searchParams = useSearchParams();

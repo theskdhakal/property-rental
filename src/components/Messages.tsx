@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Message from "./Message";
-import Spinner from "./Spinner";
+import Spinner from "@/components/spinner/Spinner";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);

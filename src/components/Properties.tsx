@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import PropertyCard from "./PropertyCard";
 
 import { fetchProperties } from "@/utils/requests";
-import Spinner from "./Spinner";
+
 import Pagination from "@/components/Pagination";
+import Spinner from "@/components/spinner/Spinner";
 
 export interface Property {
   _id: string;
