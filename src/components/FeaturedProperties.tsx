@@ -4,7 +4,6 @@ import { Property } from "@/components/Properties";
 
 const FeaturedProperties = async () => {
   const properties = await fetchProperties({ showFeatured: true });
-  console.log(properties);
 
   return (
     properties.length > 0 && (

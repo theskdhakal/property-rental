@@ -3,6 +3,13 @@ import connectDB from "@/config/database";
 import User from "@/models/User";
 import { NextAuthOptions, Profile } from "next-auth";
 
+interface ProfileProps {
+  sub?: string;
+  name?: string;
+  email?: string;
+  picture?: string;
+}
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -21,10 +28,11 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     //Invoked on successful signin
 
-    async signIn({ profile }: { profile?: Profile }) {
+    async signIn({ profile }: { profile?: ProfileProps }) {
       // Connect to database
 
       await connectDB();
+      console.log("this is user profile", profile);
 
       //check if profile is defined
       if (!profile) {
