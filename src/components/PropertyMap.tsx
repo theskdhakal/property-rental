@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Map, { Marker } from "react-map-gl";
-import { setDefaults, fromAddress } from "react-geocode";
+import { setDefaults, fromAddress, OutputFormat } from "react-geocode";
 
 import Image from "next/image";
 import pin from "@/assets/images/pin.svg";
@@ -29,6 +29,7 @@ const PropertyMap = ({ property }: { property: Property }) => {
     key: process.env.NEXT_PUBLIC_GOOGLE_GEOCODING_API_KEY, // Your API key here.
     language: "en", // Default language for responses.
     region: "us", // Default region for responses.
+    outputFormat: OutputFormat.JSON,
   });
 
   useEffect(() => {
