@@ -3,7 +3,7 @@ import { thisSession } from "@/app/profile/page";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useState, useEffect } from "react";
 
-const UnreadMessageCount = ({ session }: { session: thisSession }) => {
+const UnreadMessageCount = ({ session }: { session: any }) => {
   const { unreadCount, setUnreadCount } = useGlobalContext();
 
   useEffect(() => {

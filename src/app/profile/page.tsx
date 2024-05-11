@@ -6,9 +6,10 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 import Link from "next/link";
-import { PropertiesProps } from "@/utils/Interface";
+
 import { toast } from "react-toastify";
 import Spinner from "@/components/spinner/Spinner";
+import { Property } from "@/components/Properties";
 
 export interface thisSession {
   user: {
@@ -73,7 +74,7 @@ const ProfilePage = () => {
         //Remove the property from state
 
         const updatedProperties = properties.filter(
-          (property: PropertiesProps) => property._id !== propertyId
+          (property: Property) => property._id !== propertyId
         );
 
         setProperties(updatedProperties);
@@ -121,17 +122,19 @@ const ProfilePage = () => {
               {loading ? (
                 <Spinner loading={loading} />
               ) : (
-                properties.map((property: PropertiesProps) => (
+                properties.map((property: Property) => (
                   <div key={property._id} className="mb-10">
                     <Link href={`/properties/${property._id}`}>
-                      <Image
-                        className="h-32 w-full rounded-md object-cover"
-                        src={property?.images[0]}
-                        alt=""
-                        width={500}
-                        height={100}
-                        priority={true}
-                      />
+                      {property.images && (
+                        <Image
+                          className="h-32 w-full rounded-md object-cover"
+                          src={property?.images[0]}
+                          alt=""
+                          width={500}
+                          height={100}
+                          priority={true}
+                        />
+                      )}
                     </Link>
                     <div className="mt-2">
                       <p className="text-lg font-semibold">{property.name}</p>

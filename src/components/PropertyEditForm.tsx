@@ -70,7 +70,7 @@ const PropertyEditForm = () => {
     fetchPropertyData();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
 
     //chekc if nested property
@@ -118,7 +118,7 @@ const PropertyEditForm = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     try {
@@ -196,7 +196,7 @@ const PropertyEditForm = () => {
             id="description"
             name="description"
             className="border rounded w-full py-2 px-3"
-            rows="4"
+            rows:number="4"
             placeholder="Add an optional description of your property"
             value={fields.description}
             onChange={handleChange}

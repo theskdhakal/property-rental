@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 interface PropertyHeaderImageProps {
-  image: string | undefined;
+  image: string;
 }
 
 const PropertyHeaderImage: React.FC<PropertyHeaderImageProps> = ({ image }) => {

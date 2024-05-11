@@ -1,5 +1,3 @@
-import { Property } from "@/app/properties/page";
-
 import React, { useEffect } from "react";
 import {
   FaBed,
@@ -11,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { toast } from "react-toastify";
 import PropertyMap from "./PropertyMap";
+import { Property } from "@/components/Properties";
 
 interface PropertyComponentProps {
   property: Property;

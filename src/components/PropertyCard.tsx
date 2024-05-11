@@ -1,5 +1,3 @@
-import { Property } from "@/app/properties/page";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,6 +9,7 @@ import {
   FaMoneyBill,
   FaMapMarker,
 } from "react-icons/fa";
+import { Property } from "@/components/Properties";
 
 interface Props {
   property: Property;

@@ -1,4 +1,3 @@
-import { Property } from "@/app/properties/page";
 import React from "react";
 import {
   FacebookShareButton,
@@ -10,6 +9,7 @@ import {
   WhatsappIcon,
   EmailIcon,
 } from "react-share";
+import { Property } from "@/components/Properties";
 
 const ShareButtons = ({ property }: { property: Property }) => {
   const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`;

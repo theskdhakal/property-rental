@@ -89,7 +89,7 @@ const PropertyAddForm = () => {
     const { files } = e.target;
 
     //clone images array
-    const updatedImages = [...fields.images];
+    const updatedImages = [...(fields.images || [])];
 
     //add new files to array
     if (files !== null) {

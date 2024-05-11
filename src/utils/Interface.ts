@@ -1,3 +1,10 @@
+interface ImageFile {
+  lastModified: number;
+  name: string;
+  size: number;
+  type: string;
+}
+
 export interface PropertiesProps {
   [key: string]: any;
   type: string;
@@ -24,5 +31,5 @@ export interface PropertiesProps {
     phone: string;
   };
 
-  images?: string[];
+  images?: ImageFile[];
 }
