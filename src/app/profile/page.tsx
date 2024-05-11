@@ -5,10 +5,10 @@ import profileDefault from "@/assets/images/profile.png";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-import Spinner from "@/components/Spinner";
 import Link from "next/link";
 import { PropertiesProps } from "@/utils/Interface";
 import { toast } from "react-toastify";
+import Spinner from "@/components/spinner/Spinner";
 
 export interface thisSession {
   user: {
