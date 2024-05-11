@@ -2,7 +2,6 @@
 
 import { PropertiesProps } from "@/utils/Interface";
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 
 const PropertyAddForm = () => {
   const [mounted, setMounted] = useState(false);
@@ -37,7 +36,7 @@ const PropertyAddForm = () => {
     setMounted(true);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
 
     //chekc if nested property
@@ -169,7 +168,7 @@ const PropertyAddForm = () => {
             id="description"
             name="description"
             className="border rounded w-full py-2 px-3"
-            rows="4"
+            rows={4}
             placeholder="Add an optional description of your property"
             value={fields.description}
             onChange={handleChange}

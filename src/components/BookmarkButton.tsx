@@ -1,10 +1,11 @@
 "use client";
-import { Property } from "@/app/properties/page";
+
 import React, { useEffect, useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { thisSession } from "@/app/profile/page";
 import { toast } from "react-toastify";
+import { Property } from "@/components/Properties";
 
 const BookmarkButton = ({ property }: { property: Property }) => {
   const { data } = useSession();
