@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Map, { Marker } from "react-map-gl";
 import { setDefaults, fromAddress } from "react-geocode";
-import Spinner from "./Spinner";
+
 import Image from "next/image";
 import pin from "@/assets/images/pin.svg";
 import { PropertiesProps } from "@/utils/Interface";
-import { Property } from "@/app/properties/page";
+import Spinner from "@/components/spinner/Spinner";
+import { Property } from "@/components/Properties";
 
 const PropertyMap = ({ property }: { property: Property }) => {
   const [lat, setLat] = useState<number>(0);
